@@ -21,7 +21,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func setupImagePicker() {
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
     }
 
     @IBAction func cameraPressed(_ sender: UIBarButtonItem) {
@@ -29,7 +29,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let userPickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             imageView.image = userPickedImage
         }
         imagePicker.dismiss(animated: true, completion: nil)
