@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreML
+import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
@@ -23,7 +25,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
     }
-
+    
     @IBAction func cameraPressed(_ sender: UIBarButtonItem) {
         present(imagePicker, animated: true, completion: nil)
     }
@@ -31,8 +33,40 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let userPickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             imageView.image = userPickedImage
+            
+            guard let ciimage = CIImage(image: userPickedImage) else { fatalError("Could not convert to CIIMage") }
+            detect(image: ciimage)
         }
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func detect(image: CIImage) {
+        
+        // a container used to prepare for Vision requests
+        guard let model = try? VNCoreMLModel(for: FlowerClassifier().model) else {
+            fatalError("Could not load the Flower Classifier Model")
+        }
+        
+        let request = VNCoreMLRequest(model: model) { (request, error) in
+            guard let results = request.results as? [VNClassificationObservation] else {
+                fatalError("Model Failed To Process Image")
+            }
+            
+            if let firstResult = results.first {
+                self.navigationItem.title = firstResult.identifier
+            } else {
+                self.navigationItem.title = "Could Not Identify"
+            }
+            
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: image)
+        
+        do {
+            try handler.perform([request])
+        } catch {
+            print("Could Not Perform Vision Request -- \(error)")
+        }
     }
     
 }
