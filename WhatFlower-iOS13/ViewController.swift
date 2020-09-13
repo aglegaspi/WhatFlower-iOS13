@@ -11,10 +11,12 @@ import CoreML
 import Vision
 import Alamofire
 import SwiftyJSON
+import SDWebImage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
-        
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -34,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let userPickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            imageView.image = userPickedImage
+            //imageView.image = userPickedImage
             
             guard let ciimage = CIImage(image: userPickedImage) else { fatalError("Could not convert to CIIMage") }
             detect(image: ciimage)
@@ -80,18 +82,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let parameters : [String : String] = [
             "format" : "json",
             "action" : "query",
-            "prop" : "extracts",
+            "prop" : "extracts|pageimages",
             "exintro" : "",
             "explaintext" : "",
             "titles" : flowerName,
             "indexpageids" : "",
             "redirects" : "1",
+            "pithumbsize": "500"
         ]
         
         AF.request(wikipediaURL, method: .get, parameters: parameters).responseJSON { (response) in
-    
-                print(response)
-          
+            
+            if response.data != nil {
+                let result: JSON = JSON(response.value!)
+                print(result)
+                let pageid = result["query"]["pageids"][0].stringValue
+                
+                let flowerDescription = result["query"]["pages"][pageid]["extract"].stringValue
+                self.descriptionLabel.text = flowerDescription
+                
+                let flowerImageURL = result["query"]["pages"][pageid]["thumbnail"]["source"].stringValue
+                self.imageView.sd_setImage(with: URL(string: flowerImageURL), completed: nil)
+                
+            }
         }
     }
 }
