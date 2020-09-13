@@ -1,0 +1,13 @@
+# ignore ML files
+*.mlmodel
+FlowerClassifier.mlmodel
+WhatFlower-iOS13/FlowerClassifier.mlmodel
+WhatFlower-iOS13/*.mlmodel
+
+# ignore DS_Store
+.DS-Store
+**/.DS_Store
+
+
+
+
