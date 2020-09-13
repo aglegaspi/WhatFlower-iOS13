@@ -42,24 +42,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func detect(image: CIImage) {
         
-        // a container used to prepare for Vision requests
+        // A container for a Core ML model used with Vision requests.
         guard let model = try? VNCoreMLModel(for: FlowerClassifier().model) else {
             fatalError("Could not load the Flower Classifier Model")
         }
         
+        // An image analysis request that uses a Core ML model to process images.
         let request = VNCoreMLRequest(model: model) { (request, error) in
             guard let results = request.results as? [VNClassificationObservation] else {
                 fatalError("Model Failed To Process Image")
             }
             
             if let firstResult = results.first {
-                self.navigationItem.title = firstResult.identifier
+                self.navigationItem.title = firstResult.identifier.capitalized
             } else {
                 self.navigationItem.title = "Could Not Identify"
             }
             
         }
         
+        // An object that processes one or more image analysis requests pertaining to a single image.
         let handler = VNImageRequestHandler(ciImage: image)
         
         do {
