@@ -36,7 +36,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageViewe" destination="gS2-FR-qyI" id="Eks-7G-dx7"/>
+                        <outlet property="imageView" destination="gS2-FR-qyI" id="Eks-7G-dx7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
