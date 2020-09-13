@@ -9,10 +9,12 @@
 import UIKit
 import CoreML
 import Vision
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
-    
+        
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -54,6 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             
             if let firstResult = results.first {
+                self.getWiki(flowerName: firstResult.identifier)
                 self.navigationItem.title = firstResult.identifier.capitalized
             } else {
                 self.navigationItem.title = "Could Not Identify"
@@ -71,5 +74,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    func getWiki(flowerName: String) {
+        let wikipediaURL = "https://en.wikipedia.org/w/api.php"
+        
+        let parameters : [String : String] = [
+            "format" : "json",
+            "action" : "query",
+            "prop" : "extracts",
+            "exintro" : "",
+            "explaintext" : "",
+            "titles" : flowerName,
+            "indexpageids" : "",
+            "redirects" : "1",
+        ]
+        
+        AF.request(wikipediaURL, parameters: parameters).response { response in
+            debugPrint(response)
+        }
+    }
 }
 
