@@ -56,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             
             if let firstResult = results.first {
-                self.getWiki(flowerName: firstResult.identifier)
+                self.requestWiki(flowerName: firstResult.identifier)
                 self.navigationItem.title = firstResult.identifier.capitalized
             } else {
                 self.navigationItem.title = "Could Not Identify"
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func getWiki(flowerName: String) {
+    func requestWiki(flowerName: String) {
         let wikipediaURL = "https://en.wikipedia.org/w/api.php"
         
         let parameters : [String : String] = [
@@ -88,8 +88,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             "redirects" : "1",
         ]
         
-        AF.request(wikipediaURL, parameters: parameters).response { response in
-            debugPrint(response)
+        AF.request(wikipediaURL, method: .get, parameters: parameters).responseJSON { (response) in
+    
+                print(response)
+          
         }
     }
 }
