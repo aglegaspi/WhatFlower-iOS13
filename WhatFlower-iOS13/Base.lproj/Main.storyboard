@@ -17,7 +17,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="62e-sD-flu"/>
+                    <navigationItem key="navigationItem" id="62e-sD-flu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="2KK-sl-LW9">
+                            <connections>
+                                <action selector="cameraPressed:" destination="BYZ-38-t0r" id="cH8-RJ-JeK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
