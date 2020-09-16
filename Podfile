@@ -9,5 +9,6 @@ target 'WhatFlower-iOS13' do
 	pod 'Alamofire', '~> 5.2'
 	pod 'SwiftyJSON'
   pod 'SDWebImage'
+  pod 'lottie-ios'
 
 end

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		EC040469250E7DC00015ABC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC040468250E7DC00015ABC1 /* Assets.xcassets */; };
 		EC04046C250E7DC00015ABC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC04046A250E7DC00015ABC1 /* LaunchScreen.storyboard */; };
 		EC040474250E806C0015ABC1 /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = EC040473250E806C0015ABC1 /* FlowerClassifier.mlmodel */; };
+		EC948EFF2511B24C007E4BC4 /* 21405-flower.json in Resources */ = {isa = PBXBuildFile; fileRef = EC948EFE2511B24B007E4BC4 /* 21405-flower.json */; };
+		EC948F012511B358007E4BC4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC948F002511B358007E4BC4 /* LaunchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		EC04046B250E7DC00015ABC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC04046D250E7DC00015ABC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC040473250E806C0015ABC1 /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
+		EC948EFE2511B24B007E4BC4 /* 21405-flower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "21405-flower.json"; sourceTree = "<group>"; };
+		EC948F002511B358007E4BC4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +54,6 @@
 				4820DECC38D62577DE710E0A /* Pods-WhatFlower-iOS13.debug.xcconfig */,
 				B3FA818A38A27B57B3AE0159 /* Pods-WhatFlower-iOS13.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -89,8 +92,10 @@
 				EC040465250E7DBB0015ABC1 /* Main.storyboard */,
 				EC040468250E7DC00015ABC1 /* Assets.xcassets */,
 				EC04046A250E7DC00015ABC1 /* LaunchScreen.storyboard */,
+				EC948F002511B358007E4BC4 /* LaunchViewController.swift */,
 				EC04046D250E7DC00015ABC1 /* Info.plist */,
 				EC040473250E806C0015ABC1 /* FlowerClassifier.mlmodel */,
+				EC948EFE2511B24B007E4BC4 /* 21405-flower.json */,
 			);
 			path = "WhatFlower-iOS13";
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC04046C250E7DC00015ABC1 /* LaunchScreen.storyboard in Resources */,
+				EC948EFF2511B24C007E4BC4 /* 21405-flower.json in Resources */,
 				EC040469250E7DC00015ABC1 /* Assets.xcassets in Resources */,
 				EC040467250E7DBB0015ABC1 /* Main.storyboard in Resources */,
 			);
@@ -211,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC040474250E806C0015ABC1 /* FlowerClassifier.mlmodel in Sources */,
+				EC948F012511B358007E4BC4 /* LaunchViewController.swift in Sources */,
 				EC040464250E7DBB0015ABC1 /* ViewController.swift in Sources */,
 				EC040460250E7DBB0015ABC1 /* AppDelegate.swift in Sources */,
 				EC040462250E7DBB0015ABC1 /* SceneDelegate.swift in Sources */,
