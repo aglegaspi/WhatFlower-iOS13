@@ -12,16 +12,33 @@ import Vision
 import Alamofire
 import SwiftyJSON
 import SDWebImage
+import Lottie
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    @IBOutlet private var animationView: AnimationView!
+    
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startAnimation()
         setupImagePicker()
+    }
+    
+    func startAnimation() {
+        
+        
+        let flowerAnimation = Animation.named("21405-flower")
+        animationView.animation = flowerAnimation
+        animationView.loopMode = .loop
+        animationView.play()
+        
+        
+        
+        
     }
     
     private func setupImagePicker() {
